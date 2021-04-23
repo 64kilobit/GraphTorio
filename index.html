@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>three.js webgl - geometry - minecraft</title>
+		<title>GraphTorio</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<link type="text/css" rel="stylesheet" href="https://threejs.org/examples/main.css">
@@ -29,7 +29,11 @@
 			import { FirstPersonControls } from 'https://threejs.org/examples/jsm/controls/FirstPersonControls.js';
 			import { ImprovedNoise } from 'https://threejs.org/examples/jsm/math/ImprovedNoise.js';
 			import { BufferGeometryUtils } from 'https://threejs.org/examples/jsm/utils/BufferGeometryUtils.js';
-import { GLTFLoader } from 'https://threejs.org/examples/jsm/loaders/GLTFLoader.js';
+			import { GLTFLoader } from 'https://threejs.org/examples/jsm/loaders/GLTFLoader.js';
+			import { OrbitControls } from 'https://threejs.org/examples/jsm/controls/OrbitControls.js';
+			import { RGBELoader } from 'https://threejs.org/examples/jsm/loaders/RGBELoader.js';
+			import { RoughnessMipmapper } from 'https://threejs.org/examples/jsm/utils/RoughnessMipmapper.js';
+
 
 			let container, stats;
 
@@ -157,30 +161,20 @@ const mixers = [];
 				directionalLight.position.set( 1, 1, 0.5 ).normalize();
 				scene.add( directionalLight );
 
-// grid
+				// grid
 
 				const gridHelper = new THREE.GridHelper( 1000, 20 );
 				scene.add( gridHelper );
 
-const loader = new GLTFLoader();
-				loader.load( 'https://threejs.org/examples/models/gltf/Flamingo.glb', function ( gltf ) {
+				//Model
+				const loader = new GLTFLoader();
+				loader.load( 'https://64kilobit.github.io/GraphTorio/Test.gltf', function ( gltf ) {
 //				loader.load( 'https://threejs.org/examples/models/gltf/Duck/glTF/Duck.gltf', function ( gltf ) {
-
-
-//				loader.load( 'https://64kilobit.github.io/GraphTorio/Tree.gltf', function ( gltf ) {
-
-
-					const s = 1;
-					mesh.scale.set( s, s, s );
-					mesh.position.y = 15;
-					mesh.rotation.y = - 1;
-
-					mesh.castShadow = true;
-					mesh.receiveShadow = true;
-
-					scene.add( mesh );
-
-				} );
+//						loader.load('https://threejs.org/examples/models/gltf/Flamingo.glb', function ( gltf ) {
+gltf.scene.scale.set( 10.0, 10.0, 10.0 );
+gltf.scene.position.y = 100;
+							scene.add( gltf.scene );
+						} );
 
 
 
